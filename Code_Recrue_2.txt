@@ -2,7 +2,7 @@
 2 if coor_on_x > 0 :
 3 return EAST
 4 else :
-5 return WEST
+5 return EAST
 6
 7 def get_direction_on_y ( coor_on_y ) :
 8 if coor_on_y > 0 :
