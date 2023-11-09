@@ -1,0 +1,50 @@
+1 def get_direction_on_x ( coor_on_x ) :
+2 if coor_on_x > 0 :
+3 return EAST
+4 else :
+5 return WEST
+6
+7 def get_direction_on_y ( coor_on_y ) :
+8 if coor_on_y > 0 :
+9 return SOUTH
+10 else :
+11 return NORTH
+12
+13 def may_I_move () :
+14 return can_move () and not is_in_front_of_enemy ()
+15
+16 def dodge () :
+17 while not may_I_move () :
+18 turn_left ()
+19 move ()
+20
+21 while not is_on_target () :
+22 coor_on_x = get_target_x () - get_x ()
+23
+24 while get_direction () != get_direction_on_x ( coor_on_x ) :
+25 turn_left ()
+26
+27 steps = 0
+28 totalSteps = abs ( coor_on_x )
+29
+30 while may_I_move () and steps < totalSteps :
+31 move ()
+32 steps = steps + 1
+33
+34 if steps == totalSteps :
+35 coor_on_y = get_target_y () - get_y ()
+36
+37 while get_direction () != get_direction_on_y ( coor_on_y ) :
+38 turn_left ()
+39
+40 steps = 0
+41 totalSteps = abs ( coor_on_y )
+42 while may_I_move () and steps < totalSteps :
+43 move ()
+44 steps = steps + 1
+45 if steps != totalSteps :
+46 dodge ()
+47 else :
+48 dodge ()
+49
+50 destroy_dark_force ()
